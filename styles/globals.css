@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.min_height {
+  min-height: 85vh;
+}
+
+.auth{
+  width: 30rem;
+}
+
+.Product_Box{
+  width: 25rem;
+}
+
+.Checkout_Input_Length{
+  width: 49%;
+}
+
+.Checkout_Input_Length2{
+  width: 32%;
+}
+
+.Div_Shadow{
+  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px; */
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
+
+.Order_Received_Box{
+  width: 40rem;
+}
+
+.Order_Summary_Box{
+  width: 45rem;
+}
+
+.Shipping_Bill{
+  width: 21rem;
+}
+
+.sideNav{
+  width: 250px;
+  height : 100%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; 
+}
+
+.dashboard_Page{
+  width: 100%;
+  height: 100%;
+}
+
+.Padding{
+  padding: 1rem 4rem;
+}
+
+.purple{
+  background-color: purple;
+}
+
+@media (max-width: 550px)  {
+   .big_Screen_Item {
+     display: none;
+    }
+
+    .auth{
+      width: 90%;
+    }
+    .Product_Box{
+      width: 100%;
+    }
+
+    .Checkout_Input_Length{
+      width: 100%;
+    }
+    .Checkout_Input_Length2{
+      width: 100%;
+    }
+
+    .Order_Received_Box{
+      width: 90%;
+    }
+    .Order_Summary_Box{
+      width: 97%;
+    }
+    .Shipping_Bill{
+      width: 100%;
+    }
+    .sideNav{
+      display: none;
+    }
+    .Padding{
+      padding: 1rem .5rem;
+    }
+  }
