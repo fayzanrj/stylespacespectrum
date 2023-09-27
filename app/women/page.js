@@ -9,12 +9,11 @@ export const metadata = {
 };
 
 const Women = async () => {
-//  const response = await fetch(
-//     `${process.env.Host}/api/products/madefor/Women`, {next : {revalidate : 600}}
-//   );
-//   const res = await response.json();
-//   const products = await res.product;
-const products = undefined
+ const response = await fetch(
+    `${process.env.Host}/api/products/madefor/Women`, {next : {revalidate : 600}}
+  );
+  const res = await response.json();
+  const products = await res.product;
   return (
     <>
       <SearchBar />
