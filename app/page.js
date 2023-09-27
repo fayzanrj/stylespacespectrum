@@ -25,8 +25,7 @@ async function getData() {
   return data.products;
 }
 const Home = async () => {
-  // const products = await getData();
-  const products = undefined;
+  const products = await getData();
 
   return (
     <>
