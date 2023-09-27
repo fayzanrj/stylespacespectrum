@@ -4,17 +4,16 @@ import { StoreContext } from "@/context/Provider";
 import React, { useContext } from "react";
 
 export const metadata = {
-  title: "T-Shirts",
+  title: "T-Shirts - Style Space Spectrum",
   descriptions: "T-Shirts Page",
 };
 
 const Tshirts = async () => {
- // const response = await fetch(
-  //   `${process.env.Host}/api/products/category/tshirt`
-  // );
-  // const res = await response.json();
-  // const products = await res.product;
-  const products = undefined
+ const response = await fetch(
+    `${process.env.Host}/api/products/category/tshirt`, {next : {revalidate : 600}}
+  );
+  const res = await response.json();
+  const products = await res.product;
   return (
     <>
       <SearchBar />

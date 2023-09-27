@@ -2,6 +2,7 @@
 import { StoreContext } from "@/context/Provider";
 import Link from "next/link";
 import React, { memo, useContext } from "react";
+import toast from "react-hot-toast";
 
 const BuyNowBtn = ({ product }) => {
   const context = useContext(StoreContext);
@@ -30,6 +31,14 @@ const BuyNowBtn = ({ product }) => {
     setCart([productToBuy]);
     setSelectedColor();
     setSelectedSize();
+    toast.success("Added to cart",{
+      style: {
+        marginTop : '10vh',
+        paddingLeft: '2.5rem',
+        paddingRight: '2.5rem',
+      },
+      duration : 3500
+    })
     setProgress(70)
   };
 

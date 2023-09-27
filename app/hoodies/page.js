@@ -8,7 +8,7 @@ export const metadata = {
 };
 const Hoodies = async () => {
   const response = await fetch(
-    `${process.env.Host}/api/products/category/hoodie`
+    `${process.env.Host}/api/products/category/hoodie`, {next : {revalidate : 600}}
   );
   const res = await response.json();
   const products = await res.product;

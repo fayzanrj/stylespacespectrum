@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { memo } from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { AiTwotoneDelete } from "react-icons/ai";
 
 const CartItem = ({ item, index, cart, setCart, setSubTotal }) => {
@@ -27,6 +28,15 @@ const CartItem = ({ item, index, cart, setCart, setSubTotal }) => {
     setCart((cart) => {
       return cart.filter((_, i) => i !== index);
     });
+    toast.success("Removed from cart", {
+      style: {
+        marginTop: "10vh",
+        paddingLeft: "2.5rem",
+        paddingRight: "2.5rem",
+      },
+      duration: 2500,
+      position: "top-right",
+    });
   };
 
   return (
@@ -43,8 +53,15 @@ const CartItem = ({ item, index, cart, setCart, setSubTotal }) => {
 
       <div className="flex w-full my-[.2rem] justify-center items-center mb-[1rem]">
         {/* SIZE / COLOR */}
-        <div className="w-[50%] text-[.9rem] font-semibold text-center">
-          <p>{item.size} / {item.color}</p>
+        <div className="w-[50%]  h-fit text-[.9rem] font-semibold text-center">
+          <p className="flex justify-center items-center">
+            {item.size} /{" "}
+            <p
+              style={{ backgroundColor: item.color }}
+              className={`w-[1.5rem] h-[1.5rem] rounded-full m-[.2rem]  border-[.1rem]  text-[.5rem] cursor-pointer 
+                border-gray-300`}
+            ></p>
+          </p>
         </div>
         {/* PRICE */}
         <div className="w-[50%] text-center font-semibold">

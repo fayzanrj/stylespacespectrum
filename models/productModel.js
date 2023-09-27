@@ -22,6 +22,10 @@ const ProductSchema = new Schema({
     type : "Number",
     required : true,
   },
+  productMadeFor : {
+    type : 'String',
+    default : "Unisex"
+  },
   productVariants : {
     type : "String",
     required : true,

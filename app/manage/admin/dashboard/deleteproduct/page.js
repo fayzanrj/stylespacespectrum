@@ -2,6 +2,7 @@
 import InputComponent from "@/components/dashboardComponents/InputComponent";
 import ProductCard from "@/components/dashboardComponents/productCard";
 import React, { useRef, useState } from "react";
+import toast from "react-hot-toast";
 
 const DeleteProduct = () => {
   const searchTxt = useRef();
@@ -10,7 +11,7 @@ const DeleteProduct = () => {
   const handleClick = async () => {
     if (searchTxt?.current.value.length > 0) {
       const response = await fetch(
-        `http://localhost:3000/api/products/getproduct/${searchTxt?.current.value}`
+        `/api/products/getproduct/${searchTxt?.current.value}`
       );
       const res = await response.json();
       if (res.message === "Product found") {
@@ -27,7 +28,33 @@ const DeleteProduct = () => {
   };
 
   const deleteProduct = async () => {
-     
+    const response = await fetch(
+      `/api/products/deleteproduct/${product.productId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    const res = await response.json();
+    setProduct()
+    if (res.status == "success") {
+      toast.success(res.message, {
+        style: {
+          marginTop: "10vh",
+          paddingLeft: "2.5rem",
+          paddingRight: "2.5rem",
+        },
+        duration: 2500,
+      });
+    } else {
+      toast.error(res.message, {
+        style: {
+          marginTop: "10vh",
+          paddingLeft: "2.5rem",
+          paddingRight: "2.5rem",
+        },
+        duration: 2500,
+      });
+    }
   };
 
   return (

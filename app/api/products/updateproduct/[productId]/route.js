@@ -17,6 +17,7 @@ export const PUT = async (req, { params }) => {
           productName: reqBody.productName,
           productDesc: reqBody.productDesc,
           productPrice: reqBody.productPrice,
+          productMadeFor: reqBody.productMadeFor,
           productCategory: reqBody.productCategory,
           productVariants: await JSON.stringify(reqBody.productVariants),
         },

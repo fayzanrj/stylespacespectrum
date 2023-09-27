@@ -1,19 +1,18 @@
 "use client";
 import InputComponent from "@/components/dashboardComponents/InputComponent";
 import React, { useRef, useState } from "react";
+import toast from "react-hot-toast";
 
 const DeleteVoucher = () => {
   const searchTxt = useRef();
   const [voucher, setVoucher] = useState();
 
   const handleClick = async () => {
-    console.log(searchTxt?.current.value);
     if (searchTxt?.current.value.length > 0) {
       const response = await fetch(
-        `http://localhost:3000/api/voucher/getvoucher/${searchTxt?.current.value}`
+        `/api/voucher/getvoucher/${searchTxt?.current.value}`
       );
       const res = await response.json();
-      console.log(res)
       if (res.status === "success") {
         setVoucher(res.voucher);
       }
@@ -21,17 +20,32 @@ const DeleteVoucher = () => {
   };
 
   const deletev = async () => {
-    console.log(voucher.voucherCode);
     const response = await fetch(
-      `http://localhost:3000/api/voucher/deletevoucher/${voucher.voucherCode}`,
+      `/api/voucher/deletevoucher/${voucher.voucherCode}`,
       {
         method: "DELETE",
       }
     );
     const res = await response.json();
-    console.log(res);
     if (res.status == "success") {
       setVoucher();
+      toast.success(res.message, {
+        style: {
+          marginTop: "10vh",
+          paddingLeft: "2.5rem",
+          paddingRight: "2.5rem",
+        },
+        duration: 2500,
+      });
+    } else {
+      toast.error(res.message, {
+        style: {
+          marginTop: "10vh",
+          paddingLeft: "2.5rem",
+          paddingRight: "2.5rem",
+        },
+        duration: 2500,
+      });
     }
   };
 
@@ -40,7 +54,7 @@ const DeleteVoucher = () => {
       {/* SEARCH SECTION */}
       <div className="w-[100%] text-center">
         <InputComponent
-          label={"Search Product"}
+          label={"Search Voucher"}
           id={"searchProduct"}
           refVar={searchTxt}
           type={"Text"}
@@ -59,26 +73,30 @@ const DeleteVoucher = () => {
         <div className="w-full my-[2rem] shadow-xl p-[1rem]">
           <table className="w-full">
             <thead className="w-full">
-              <th class="text-center px-[5vw] py-[.5rem] border-2 border-stone-500">
-                Voucher Code
-              </th>
-              <th class="text-center px-[5vw] py-[.5rem] border-2 border-stone-500">
-                Quantity
-              </th>
-              <th class="text-center px-[5vw] py-[.5rem] border-2 border-stone-500">
-                Discount
-              </th>
+              <tr>
+                <th className="text-center px-[5vw] py-[.5rem] border-2 border-stone-500">
+                  Voucher Code
+                </th>
+                <th className="text-center px-[5vw] py-[.5rem] border-2 border-stone-500">
+                  Quantity
+                </th>
+                <th className="text-center px-[5vw] py-[.5rem] border-2 border-stone-500">
+                  Discount
+                </th>
+              </tr>
             </thead>
             <tbody className="w-full">
-              <td class="text-center px-[5vw] py-[.5rem] border-2 border-stone-500 ">
-                {voucher.voucherCode}
-              </td>
-              <td class="text-center px-[5vw] py-[.5rem] border-2 border-stone-500">
-                {voucher.quantity}
-              </td>
-              <td class="text-center px-[5vw] py-[.5rem] border-2 border-stone-500">
-                {voucher.discount}
-              </td>
+              <tr>
+                <td class="text-center px-[5vw] py-[.5rem] border-2 border-stone-500 ">
+                  {voucher.voucherCode}
+                </td>
+                <td class="text-center px-[5vw] py-[.5rem] border-2 border-stone-500">
+                  {voucher.quantity}
+                </td>
+                <td class="text-center px-[5vw] py-[.5rem] border-2 border-stone-500">
+                  {voucher.discount}
+                </td>
+              </tr>
             </tbody>
           </table>
           <div className="text-left my-[1rem]">

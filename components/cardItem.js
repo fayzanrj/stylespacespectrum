@@ -8,18 +8,22 @@ import React, { memo, useContext, useEffect } from "react";
 const CardItem = ({ title, price, image, id, variants, desc }) => {
   const context = useContext(StoreContext);
   const { setProgress, progress } = context;
-
-  variants = JSON.parse(variants);
-
   const colors = [];
-  variants.forEach((variant) => {
-    if (!colors.includes(variant.color) && variant.quantity > 0) {
-      colors.push(variant.color);
-    }
 
-    useEffect(()=>{
-      setProgress(100)
-    })
+  try {
+    if (variants) {
+      variants = JSON.parse(variants);
+
+      variants.forEach((variant) => {
+        if (!colors.includes(variant.color) && variant.quantity > 0) {
+          colors.push(variant.color);
+        }
+      });
+    }
+  } catch (error) {}
+
+  useEffect(() => {
+    setProgress(100);
   });
 
   return (

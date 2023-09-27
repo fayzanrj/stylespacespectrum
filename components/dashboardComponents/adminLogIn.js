@@ -5,6 +5,7 @@ import Logo from "@/components/logo";
 import { useRouter } from "next/navigation";
 import InputComponent from "./InputComponent";
 import { StoreContext } from "@/context/Provider";
+import toast from "react-hot-toast";
 
 const AdminLogin = () => {
   const username = useRef();
@@ -30,9 +31,21 @@ const AdminLogin = () => {
     });
     const res = await response.json();
     if (res.status === "success") {
-      setRedirect(true);
+      toast.success("Redirecting to Admin Dashboard",{
+        style: {
+          marginTop : '10vh',
+        },
+        duration : 2500
+      })
       setAdminLoggedIn(true);
       router.push("/manage/admin/dashboard");
+    } else {
+      toast.error("Wrong Credentials",{
+        style: {
+          marginTop : '10vh',
+        },
+        duration : 2500
+      })
     }
   };
   return (
@@ -45,7 +58,6 @@ const AdminLogin = () => {
           >
           {/* LOGO */}
           <Logo />
-          {redirect && <div>Redirecting....</div>}
           {/* EMAIL */}
           <InputComponent
             label={"Username"}

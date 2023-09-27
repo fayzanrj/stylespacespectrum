@@ -1,9 +1,7 @@
 import Image from "next/image";
-import React, { memo, useEffect, useState } from "react";
-import Varients from "../variants";
+import React, { memo } from "react";
 
 const ProductCard = ({ product, deleteProduct }) => {
-  
   return (
     <div className="text-center my-[3rem] p-[1rem] shadow-xl">
       {/* IMAGE */}
@@ -32,31 +30,35 @@ const ProductCard = ({ product, deleteProduct }) => {
           <span className="font-semibold">All available variants : </span>
           <table>
             <thead>
-              <th className="text-center px-[1rem] border-2 border-stone-500">
-                Size
-              </th>
-              <th className="text-center px-[1rem] border-2 border-stone-500">
-                Color
-              </th>
-              <th className="text-center px-[1rem] border-2 border-stone-500">
-                Quantity
-              </th>
+              <tr>
+                <th className="text-center px-[1rem] border-2 border-stone-500">
+                  Size
+                </th>
+                <th className="text-center px-[1rem] border-2 border-stone-500">
+                  Color
+                </th>
+                <th className="text-center px-[1rem] border-2 border-stone-500">
+                  Quantity
+                </th>
+              </tr>
             </thead>
-            {product.productVariants.map((varient, index) => {
-              return (
-                <tbody key={index}>
-                  <td className="text-center pr-[.5rem] border-2 border-stone-500">
-                    {varient.size}
-                  </td>
-                  <td className="text-center pr-[.5rem] border-2 border-stone-500">
-                    {varient.color}
-                  </td>
-                  <td className="text-center pr-[.5rem] border-2 border-stone-500">
-                    {varient.quantity}
-                  </td>
-                </tbody>
-              );
-            })}
+            <tbody >
+              {product.productVariants.map((varient, index) => {
+                return (
+                  <tr key={index}>
+                    <td className="text-center pr-[.5rem] border-2 border-stone-500">
+                      {varient.size}
+                    </td>
+                    <td className="text-center pr-[.5rem] border-2 border-stone-500">
+                      {varient.color}
+                    </td>
+                    <td className="text-center pr-[.5rem] border-2 border-stone-500">
+                      {varient.quantity}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
 

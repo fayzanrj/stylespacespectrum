@@ -9,17 +9,17 @@ const ConfirmComponent = () => {
   const router = useRouter();
   const context = useContext(StoreContext);
   // const { order } = context;
-  const { subTotal, order , setProgress} = context;
+  const { subTotal, order, setProgress } = context;
 
   useEffect(() => {
-    setProgress(100)
+    setProgress(100);
   }, []);
 
   const confirmOrder = () => {
-    setProgress(40)
-    router.push("orderReceived")
-    setProgress(90)
-  }
+    setProgress(40);
+    router.push("orderReceived");
+    setProgress(90);
+  };
 
   return (
     <div className="w-full pt-[15vh] min_height h-fit flex gap-[1rem] justify-center items-center flex-wrap py-[2rem]">
@@ -110,7 +110,12 @@ const CartSummaryItems = ({ product }) => {
         {/* IMAGE AND TITLE */}
         <div className="w-full flex h-[5rem] overflow-hidden items-center">
           <div className=" h-[5rem] text-center object-contain">
-            <Image src={product.productImg} alt="image" width={60} height={10} />
+            <Image
+              src={product.productImg}
+              alt="image"
+              width={60}
+              height={10}
+            />
           </div>
           <div className=" m-[1rem] text-[1.2rem] flex items-center py-[.2rem] px-[.4rem]  font-bold">
             {product.productName}
@@ -127,12 +132,21 @@ const CartSummaryItems = ({ product }) => {
           {/* SIZE & COLOR*/}
           <div className="w-full flex justify-between">
             <div className="w-[70%] text-left pl-[2rem]">Size/Color</div>
-            <div className="w-[30%] text-left ">{product.size} / {product.color}</div>
+            <div className="w-[30%] text-left flex items-center">
+              {product.size} /
+              <p
+                style={{ backgroundColor: product.color }}
+                className={`w-[1rem] h-[1rem] rounded-full m-[.2rem]  border-[.1rem]  text-[.5rem] cursor-pointer 
+                border-gray-300`}
+              ></p>
+            </div>
           </div>
           {/* PRICE */}
           <div className="w-full flex justify-between">
             <div className="w-[70%] text-left pl-[2rem]">Price (per item)</div>
-            <div className="w-[30%] text-left ">PKR {product.productPrice} /-</div>
+            <div className="w-[30%] text-left ">
+              PKR {product.productPrice} /-
+            </div>
           </div>
           {/* Total */}
           <div className="w-full flex justify-between">

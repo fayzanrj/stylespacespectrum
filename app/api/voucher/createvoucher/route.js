@@ -1,4 +1,4 @@
-import Voucher from "@/models/voucherModel";
+ import Voucher from "@/models/voucherModel";
 import { connectToDB } from "@/utilities/database";
 import { NextResponse } from "next/server";
 
@@ -38,7 +38,10 @@ export const POST = async (req) => {
 
 
         //SENDING NEWLY CREATED VOUCHER BACK
-        return NextResponse.json(voucher)
+        return NextResponse.json({
+            status : 'success',
+            message : 'Voucher created succesfully'
+        })
 
     } catch (error) {
         return NextResponse.json({

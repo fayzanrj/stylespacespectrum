@@ -21,6 +21,7 @@ export const POST = async (req) => {
       productName: reqBody.productName,
       productDesc: reqBody.productDesc,
       productPrice: reqBody.productPrice,
+      productMadeFor: reqBody.productMadeFor,
       productCategory: reqBody.productCategory,
       productVariants: await JSON.stringify(reqBody.productVariants),
       productImg : reqBody.productImg
@@ -29,7 +30,7 @@ export const POST = async (req) => {
 
     if (!product) {
       return NextResponse.send({
-        status: "Failed",
+        status: "failed",
         message: "Internal Server Error",
       });
     }

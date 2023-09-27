@@ -2,6 +2,7 @@
 import InputComponent from "@/components/dashboardComponents/InputComponent";
 import axios from "axios";
 import React, { useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { MdDelete } from "react-icons/md";
 
 const AddProduct = () => {
@@ -14,6 +15,7 @@ const AddProduct = () => {
   const productId = useRef();
   const productCategory = useRef();
   const productImage = useRef();
+  const madeFor = useRef();
 
   const addVariant = () => {
     const variant = {
@@ -48,24 +50,32 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(
-      `http://localhost:3000/api/products/getproduct/${productId?.current.value}`
-    );
+    toast.success("Adding product", {
+      style: {
+        marginTop: "10vh",
+        paddingLeft: "2.5rem",
+        paddingRight: "2.5rem",
+      },
+      duration: 1500,
+    });
+
+    const response = await fetch(`/api/products/getproduct/${productId?.current.value}`);
     const res = await response.json();
 
     if (res.message == "No Product found") {
       const imgUrl = await getImgUrl();
       const product = {
         productId: productId?.current.value,
-        productCategory: productCategory?.current.value,
+        productCategory: productCategory?.current.value.toLowerCase(),
         productName: productName?.current.value,
         productDesc: productDesc?.current.value,
         productPrice: productPrice?.current.value,
         productVariants: variants,
+        productMadeFor : madeFor?.current.value,
         productImg: imgUrl,
       };
 
-      const response = await fetch("/api/products/addproduct", {
+      const response = await fetch(`/api/products/addproduct`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,6 +83,34 @@ const AddProduct = () => {
         body: JSON.stringify(product),
       });
       const res = await response.json();
+      if (res.status === "success") {
+        toast.success("Product added", {
+          style: {
+            marginTop: "10vh",
+            paddingLeft: "2.5rem",
+            paddingRight: "2.5rem",
+          },
+          duration: 1500,
+        });
+      } else {
+        toast.error("Product not added", {
+          style: {
+            marginTop: "10vh",
+            paddingLeft: "2.5rem",
+            paddingRight: "2.5rem",
+          },
+          duration: 2500,
+        });
+      }
+    } else {
+      toast.error("A product with this Product Id Already exists", {
+        style: {
+          marginTop: "10vh",
+          paddingLeft: "2.5rem",
+          paddingRight: "2.5rem",
+        },
+        duration: 2500,
+      });
     }
   };
 
@@ -133,6 +171,22 @@ const AddProduct = () => {
         refVar={productPrice}
         placeholder={"Product ID e.g. 1001 or ab300cd etc"}
       />
+
+      {/* MADE FOR */}
+      <label
+        className="block text-gray-700 text-sm font-bold mb-2 text-left"
+        htmlFor={"madeFor"}
+      >
+        Product is Made for
+      </label>
+      <div className="w-full">
+        <select ref={madeFor} id="madeFor" className="text-[1.2rem] outline-none">
+          <option>Unisex</option>
+          <option>Men</option>
+          <option>Women</option>
+        </select>
+      </div>
+
       {/* Product Image */}
       <div className="my-4">
         <label

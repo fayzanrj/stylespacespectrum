@@ -12,11 +12,9 @@ const Cart = ({
   openCart,
   subTotal,
   setSubTotal,
-  saveCart,
 }) => {
 
   const handleEmpty = () => {
-    saveCart();
     setSubTotal(0);
     setCart([]);
   };
@@ -54,7 +52,6 @@ const Cart = ({
                   setCart={setCart}
                   subTotal={subTotal}
                   setSubTotal={setSubTotal}
-                  saveCart={saveCart}
                 />
               );
             })}

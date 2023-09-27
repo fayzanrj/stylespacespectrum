@@ -6,11 +6,11 @@ import { StoreContext } from "@/context/Provider";
 
 const ReceivedComponent = () => {
   const context = useContext(StoreContext);
-  const { order, subTotal ,setProgress } = context;
+  const { order, subTotal, setProgress } = context;
 
   useEffect(() => {
-    setProgress(100)
-  },[])
+    setProgress(100);
+  }, []);
   return (
     <div className="w-full pt-[15vh] min_height flex gap-[1rem] justify-center items-center flex-wrap py-[2rem]">
       <div className="Order_Received_Box min-h-[50vh] h-fit shadow-2xl p-[1rem]">
@@ -100,8 +100,16 @@ const OrderItem = ({ product }) => {
         <div className="w-[10%] object-contain flex justify-center items-center">
           <Image src={product.productImg} width={40} height={10} alt="img" />
         </div>
-        <div className="w-[55%] p-[.2rem] text-center flex justify-center items-center bg-yellow">
-          {product.productName} / ({product.size} / {product.color})
+        <div className="w-[55%] p-[.2rem]  text-center">
+          {product.productName}
+          <div className=" flex items-center justify-center">
+            {product.size} /{" "}
+            <p
+              style={{ backgroundColor: product.color }}
+              className={`w-[1rem] h-[1rem] rounded-full m-[.2rem]  border-[.1rem]  text-[.5rem] cursor-pointer 
+                border-gray-300`}
+            ></p>
+          </div>
         </div>
         <div className="w-[20%] text-center flex justify-center items-center">
           {product.quantity}

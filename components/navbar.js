@@ -109,20 +109,29 @@ const Navbar = () => {
               <li>Hoodies</li>
             </Link>
             <hr className="w-full bg-black" />
-            {/* MEN LINK DESKTOP */}
+            {/* JACKETS LINK MOBILE*/}
             <Link
+              onClick={goto}
+              href={"/jackets"}
+              className="w-full h-[8vh] p-[1rem] font-mono text-center"
+            >
+              <li>Jackets</li>
+            </Link>
+            <hr className="w-full bg-black" />
+            {/* MEN LINK MOBILE */}
+            <Link
+              onClick={goto}
               href={"/men"}
               className="W-full h-[8vh]  p-[1rem] font-mono text-center"
-              onClick={() => setProgress(70)}
             >
               <li>Men</li>
             </Link>
             <hr className="w-full bg-black" />
-            {/* HOODIES LINK DESKTOP */}
+            {/* WOMEN LINK MOBILE */}
             <Link
+              onClick={goto}
               href={"/women"}
               className="w-full h-[8vh]  p-[1rem] font-mono text-center"
-              onClick={() => setProgress(70)}
             >
               <li>Women</li>
             </Link>
@@ -166,6 +175,14 @@ const Navbar = () => {
           >
             Hoodies
           </Link>
+          {/* JACKETS LINK DESKTOP */}
+          <Link
+            href={"/jackets"}
+            className="font-mono  big_Screen_Item font-semibold mx-[1rem] cursor-pointer hover:underline duration-1000"
+            onClick={() => setProgress(70)}
+          >
+            Jackets
+          </Link>
           {/* MEN LINK DESKTOP */}
           <Link
             href={"/men"}
@@ -174,7 +191,7 @@ const Navbar = () => {
           >
             Men
           </Link>
-          {/* HOODIES LINK DESKTOP */}
+          {/* WOMEN LINK DESKTOP */}
           <Link
             href={"/women"}
             className="font-mono  big_Screen_Item font-semibold mx-[1rem] cursor-pointer hover:underline duration-1000"

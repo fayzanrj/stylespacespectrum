@@ -1,6 +1,7 @@
 "use client";
 import InputComponent from "@/components/dashboardComponents/InputComponent";
 import React, { useRef } from "react";
+import toast from "react-hot-toast";
 
 const CreateVoucher = () => {
   const voucherCodeRef = useRef();
@@ -36,8 +37,26 @@ const CreateVoucher = () => {
       );
 
       const res = await response.json();
-      console.log(res);
-    }
+      if(res.status === 'success'){
+        toast.success("Voucher Created",{
+          style: {
+            marginTop : '10vh',
+            paddingLeft: '2.5rem',
+            paddingRight: '2.5rem',
+          },
+          duration : 2500
+        })
+      } else {
+        toast.error(res.message,{
+          style: {
+            marginTop : '10vh',
+            paddingLeft: '2.5rem',
+            paddingRight: '2.5rem',
+          },
+          duration : 2500
+        })
+      }
+      }
   };
   return (
     <form

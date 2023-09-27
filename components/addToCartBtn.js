@@ -1,6 +1,7 @@
 "use client";
 import { StoreContext } from "@/context/Provider";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 
 const AddToCartBtn = ({ product }) => {
   const context = useContext(StoreContext);
@@ -14,6 +15,16 @@ const AddToCartBtn = ({ product }) => {
     setSelectedColor,
   } = context;
 
+  const toastTrigger = () => {
+    toast.success("Added to cart",{
+      style: {
+        marginTop : '10vh',
+        paddingLeft: '2.5rem',
+        paddingRight: '2.5rem',
+      },
+      duration : 2500
+    })
+  }
   const handleClick = () => {
     if (selectedColor && selectedSize) {
       setSubTotal((prev) => prev + product.productPrice);
@@ -28,6 +39,7 @@ const AddToCartBtn = ({ product }) => {
           setCart([...cart]);
           setSelectedColor();
           setSelectedSize();
+          toastTrigger()
           return;
         }
       }
@@ -44,6 +56,7 @@ const AddToCartBtn = ({ product }) => {
       setCart([...cart, productToBuy]);
       setSelectedColor();
       setSelectedSize();
+      toastTrigger()
     }
   };
 

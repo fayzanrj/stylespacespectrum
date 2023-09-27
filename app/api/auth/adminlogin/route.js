@@ -8,14 +8,18 @@ export const POST = async (req) => {
       username === process.env.ADMIN_USERNAME &&
       password === process.env.ADMIN_PASSWORD
     ) {
-        return NextResponse.json({
-            status : 'success',
-        })
+      return NextResponse.json({
+        status: "success",
+      });
+    } else {
+      return NextResponse.json({
+        status: "failed",
+      });
     }
   } catch (error) {
     return NextResponse.send({
-        status: "Failed",
-        message: "Internal Server Error",
-      });
+      status: "Failed",
+      message: "Internal Server Error",
+    });
   }
 };

@@ -4,13 +4,13 @@ import { StoreContext } from "@/context/Provider";
 import React, { useContext } from "react";
 
 export const metadata = {
-  title: "Men - Style Space Spectrum",
-  descriptions: "T-Shirts Page",
+  title: "Jackets - Style Space Spectrum",
+  descriptions: "Jackets Page",
 };
 
-const Men = async () => {
+const Jackets = async () => {
  const response = await fetch(
-    `${process.env.Host}/api/products/madefor/Men`, {next : {revalidate : 600}}
+    `${process.env.Host}/api/products/category/jacket`, {next : {revalidate : 600}}
   );
   const res = await response.json();
   const products = await res.product;
@@ -18,7 +18,7 @@ const Men = async () => {
     <>
       <SearchBar />
       <div className="pl-[10vw] mt-[3vh] text-[1.25rem] underline">
-        / Men
+        / Jackets
       </div>
       <div className="w-full pt-[3vh]  min_height flex gap-[1.5rem] justify-center items-center flex-wrap pb-[2rem] px-[1rem]">
         {products ? (
@@ -43,4 +43,4 @@ const Men = async () => {
   );
 };
 
-export default Men;
+export default Jackets;
