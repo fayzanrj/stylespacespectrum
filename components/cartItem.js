@@ -16,7 +16,7 @@ const CartItem = ({ item, index, cart, setCart, setSubTotal }) => {
   // SUBTRACT COUNT
   const subtractQty = () => {
     if (cart[index].quantity > 1) {
-      setSubTotal((prev) => prev - item.price);
+      setSubTotal((prev) => prev - item.productPrice);
       cart[index].quantity--;
       setQuantity(cart[index].quantity);
     }
