@@ -9,7 +9,7 @@ export function Provider({ children }) {
   const [selectedSize, setSelectedSize] = useState()
   const [selectedColor, setSelectedColor] = useState()
   const [order , setOrder] = useState()
-  const [adminLoggedIn , setAdminLoggedIn] = useState(true)
+  const [adminLoggedIn , setAdminLoggedIn] = useState(false)
   const [progress , setProgress] = useState(0)
 
   return (
